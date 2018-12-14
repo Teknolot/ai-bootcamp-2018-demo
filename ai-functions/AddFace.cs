@@ -20,7 +20,7 @@ namespace ai_functions
 
         [FunctionName("AddFace")]
         public static async Task<HttpResponseMessage> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log, ExecutionContext context)
         {
             #region Config
