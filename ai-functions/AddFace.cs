@@ -51,8 +51,7 @@ namespace ai_functions
             //Sample Person Group is created at first run for demo purposes.
             //await faceClient.PersonGroup.CreateAsync(PersonGroupId, PersonGroupId); 
             PersonGroup humanGroup = await faceClient.PersonGroup.GetAsync(PersonGroupId);
-            await faceClient.PersonGroup.TrainAsync(PersonGroupId);
-
+            
             Person human = null;
             if (string.IsNullOrEmpty(personId))
             {
@@ -64,6 +63,8 @@ namespace ai_functions
             }
           
             PersistedFace face = await faceClient.PersonGroupPerson.AddFaceFromUrlAsync(humanGroup.PersonGroupId, human.PersonId, imageUrl);
+
+            await faceClient.PersonGroup.TrainAsync(PersonGroupId);
             #endregion
 
             #region Return JSON
