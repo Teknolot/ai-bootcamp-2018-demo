@@ -25,20 +25,20 @@ namespace ai_functions
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log, ExecutionContext context)
         {
+            var config = new ConfigurationBuilder()
+            .SetBasePath(context.FunctionAppDirectory)
+            .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
+            .AddEnvironmentVariables()
+            .Build();
+
+            var faceEndpoint = config["faceEndpoint"];
+            var subscriptionKey = config["faceSubscriptionKey"];
+
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             string imageUrl = data?.imageUrl;
             string personName = data?.personName;
             string personId = data?.personId;
-
-            var config = new ConfigurationBuilder()
-               .SetBasePath(context.FunctionAppDirectory)
-               .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
-               .AddEnvironmentVariables()
-               .Build();
-
-            var faceEndpoint = config["faceEndpoint"];
-            var subscriptionKey = config["faceSubscriptionKey"];
 
             FaceClient faceClient = new FaceClient(new ApiKeyServiceClientCredentials(subscriptionKey), new System.Net.Http.DelegatingHandler[] { })
             {
@@ -47,7 +47,7 @@ namespace ai_functions
 
             //Sample Person Group is created at first run for demo purposes.
             //await faceClient.PersonGroup.CreateAsync(PersonGroupId, PersonGroupId); 
-            PersonGroup humanGroup = await faceClient.PersonGroup.GetAsync(PersonGroupId); 
+            PersonGroup humanGroup = await faceClient.PersonGroup.GetAsync(PersonGroupId);
 
             Person human = null;
             if (string.IsNullOrEmpty(personId))
