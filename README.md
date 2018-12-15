@@ -1,4 +1,4 @@
-# ai-bootcamp-2018-demo
+# Demo app used during AI Bootcamp Istanbul "Rapid AI in Mobile Experiences" session.
 
 POC [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) code running [Cognitive Services Face APIs](https://westus.dev.cognitive.microsoft.com/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523a) to train and match faces to individuals.
 
