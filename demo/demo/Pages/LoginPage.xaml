@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:demo.ViewModels;assembly=demo"
+             xmlns:converters="clr-namespace:demo.Converters;assembly=demo"
+             x:Class="demo.Pages.LoginPage">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:ImageUrlConverter x:Key="ImageUrlConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Source="{Binding User.File}"
+                   IsVisible="{Binding User.File},Converter={ImageUrlConverter}"/>
+            <Entry Placeholder="Name"
+                   Grid.Row="1"
+                   Text="{Binding User.Name}" />
+            <Grid Grid.Row="2">
+                <Button Text="Login"
+                        Grid.Row="0" Grid.Column="0"
+                        Command="{Binding LoginCommand}" />
+                <Button Text="Register"
+                        Grid.Row="0" Grid.Column="1"
+                        Command="{Binding RegisterCommand}" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
