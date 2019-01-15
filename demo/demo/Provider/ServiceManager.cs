@@ -48,7 +48,9 @@ namespace demo.Provider
             {
                 client.DefaultRequestHeaders.Add("Accept", "application/x-www-form-urlencoded");
                 client.BaseAddress = new Uri("https://face-validation-functions.azurewebsites.net/api/");
-                var request = await client.PostAsync("UploadFile?code=dnkL554a8cNwa67UpWl4LOogqAGCPVxD6G5CkI5NUSieiTTtlkJQyw==", form);
+                var request = await client.
+                    PostAsync("UploadFile?code=dnkL554a8cNwa67UpWl4LOogqAGCPVxD6G5CkI5NUSieiTTtlkJQyw==",
+                    form);
 
                 if (request.IsSuccessStatusCode && request.StatusCode == HttpStatusCode.OK)
                 {

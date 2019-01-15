@@ -56,8 +56,6 @@ namespace demo.ViewModels
                 finally
                 {
                     _dialogService.HideLoading();
-                    User.Name = string.Empty;
-                    User.File = string.Empty;
                 }
             }
             else
@@ -122,9 +120,12 @@ namespace demo.ViewModels
 
             if (media == null)
                 return false;
+
+            _dialogService.ShowLoading();
             _url = await _serviceManager.Upload(media);
             User.File = ImageSource.FromUri(new Uri(_url));
-            return String.IsNullOrEmpty(_url);
+            _dialogService.HideLoading();
+            return !String.IsNullOrEmpty(_url);
         }
     }
 }

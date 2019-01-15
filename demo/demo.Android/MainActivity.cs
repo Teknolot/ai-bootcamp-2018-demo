@@ -6,7 +6,9 @@ using Android.OS;
 [assembly: UsesFeature("android.hardware.camera.autofocus", Required = false)]
 namespace demo.Droid
 {
-    [Activity(Label = "demo", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "demo", Icon = "@mipmap/icon", Theme = "@style/MainTheme", 
+        MainLauncher = true, ConfigurationChanges = 
+        ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)

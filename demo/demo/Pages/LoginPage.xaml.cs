@@ -10,6 +10,8 @@ namespace demo.Pages
 	{
 		public LoginPage ()
 		{
+
+
 			InitializeComponent ();
             var viewModel = App.Container.Resolve(typeof(LoginPageViewModel));
             this.BindingContext = viewModel;
