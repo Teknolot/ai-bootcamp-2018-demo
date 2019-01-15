@@ -22,7 +22,11 @@ namespace demo.ViewModels
             _serviceManager = serviceManager;
             _dialogService = dialogService;
             _camService = camService;
-            User = new UserModel();
+            User = new UserModel
+            {
+                File = "",
+                Name = ""
+            };
         }
 
         public ICommand LoginCommand => new Command(async () =>
@@ -120,7 +124,7 @@ namespace demo.ViewModels
                 return false;
             _url = await _serviceManager.Upload(media);
             User.File = ImageSource.FromUri(new Uri(_url));
-            return String.IsNullOrEmpty(_url) ? false : true;
+            return String.IsNullOrEmpty(_url);
         }
     }
 }
